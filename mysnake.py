@@ -9,9 +9,9 @@ while True:
     clock.tick(1)
 
     for event in pg.event.get():
-        pass
+        if event.type == pg.QUIT:
+            pg.quit()
 
     random_color = (randint(0, 255), randint(0, 255), randint(0, 255))
     screen.fill(random_color)
     pg.display.update()
-    
