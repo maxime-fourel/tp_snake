@@ -63,6 +63,11 @@ def eat_fruit(score, snake, fruit):
         draw_fruit(fruit)
     return (score,snake,fruit)
 
+def game_over(snake):
+    if snake[-1] in snake[:-1]:
+        return True 
+    return False
+    
 #initialisation du jeu : direction, score, snake et position d'un premier fruit
 direction = (1, 0)
 score=0
@@ -71,7 +76,7 @@ fruit=(randint(0, 29), randint(0, 29))
 
 
 while True:
-    clock.tick(2)
+    clock.tick(4)
 
     for event in pg.event.get():
         if event.type == pg.QUIT or event.type == pg.KEYDOWN and event.key == pg.K_q: #pour quitter le jeu en appuyant sur la croix ou sur q
@@ -103,6 +108,18 @@ while True:
     draw_fruit(fruit)
     score, SNAKE, fruit = eat_fruit(score, SNAKE, fruit)
 
+    if game_over(SNAKE):
+        texte=pg.font.Font(None,74).render('Game Over',True,(255,0,0),)
+        screen.blit(texte, (200,200))
+        pg.display.flip()
+        pg.time.wait(2000)
+        
 
+
+
+        
+        
+        
+        
 
 
