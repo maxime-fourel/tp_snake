@@ -30,6 +30,19 @@ def draw_bord(screen):
     pg.display.update()
     return 
 
+SNAKE = [
+   (10, 15),
+   (11, 15),
+   (12, 15),
+]
+def draw_snake(snake):
+    for segment in snake:
+        x, y = segment
+        rect = pg.Rect(x * 20, y * 20, 20, 20)
+        pg.draw.rect(screen, (255, 0, 0), rect)
+        pg.display.update()
+    return
+
 while True:
     clock.tick(1)
 
@@ -46,6 +59,8 @@ while True:
     # rect = pg.Rect(x, y, width, height)
     # pg.draw.rect(screen, color, rect)
     draw_bord(screen)
+    draw_snake(SNAKE)
+
 
 
 
