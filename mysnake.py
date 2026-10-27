@@ -66,6 +66,8 @@ def eat_fruit(score, snake, fruit):
 def game_over(snake):
     if snake[-1] in snake[:-1]:
         return True 
+    if snake[-1][0]==(29 or 0) or snake[-1][1]==(29 or 0):
+        return True
     return False
     
 #initialisation du jeu : direction, score, snake et position d'un premier fruit
@@ -101,12 +103,14 @@ while True:
     # rect = pg.Rect(x, y, width, height)
     # pg.draw.rect(screen, color, rect)
     
+        
 
     draw_bord(screen)
     draw_snake(SNAKE)
     move_snake(SNAKE, direction)
     draw_fruit(fruit)
     score, SNAKE, fruit = eat_fruit(score, SNAKE, fruit)
+    pg.display.set_caption(f"Score {score}")
 
     if game_over(SNAKE):
         texte=pg.font.Font(None,74).render('Game Over',True,(255,0,0),)
