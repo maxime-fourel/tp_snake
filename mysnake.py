@@ -9,7 +9,7 @@ while True:
     clock.tick(1)
 
     for event in pg.event.get():
-        if event.type == pg.QUIT:
+        if event.type == pg.QUIT or event.type == pg.KEYDOWN and event.key == pg.K_q: #pour quitter le jeu en appuyant sur la croix ou sur q
             pg.quit()
 
     random_color = (randint(0, 255), randint(0, 255), randint(0, 255))
