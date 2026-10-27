@@ -48,15 +48,35 @@ def move_snake(snake,direction):
     snake.pop(0)
     return snake
 
+def draw_fruit(FRUIT):
+    x,y=FRUIT
+    rect = pg.Rect(x * 20, y * 20, 20, 20)
+    pg.draw.rect(screen, (0, 255, 0), rect)
+    pg.display.update()
+    return
 
-direction = (0, 0) 
+def eat_fruit(score, snake, fruit):
+    if snake[-1]==fruit:
+        score+=1
+        snake.insert(0,(snake[0]))
+        fruit=(randint(0, 29), randint(0, 29))
+        draw_fruit(fruit)
+    return (score,snake,fruit)
+
+#initialisation du jeu : direction, score, snake et position d'un premier fruit
+direction = (1, 0)
+score=0
+snake=SNAKE
+fruit=(randint(0, 29), randint(0, 29))
+
+
 while True:
-    clock.tick(1)
+    clock.tick(2)
 
     for event in pg.event.get():
         if event.type == pg.QUIT or event.type == pg.KEYDOWN and event.key == pg.K_q: #pour quitter le jeu en appuyant sur la croix ou sur q
             pg.quit()
-        
+    
         if event.type==pg.KEYDOWN:
             if event.key==pg.K_UP and direction!=(0,1):
                 direction=(0, -1)
@@ -80,6 +100,8 @@ while True:
     draw_bord(screen)
     draw_snake(SNAKE)
     move_snake(SNAKE, direction)
+    draw_fruit(fruit)
+    score, SNAKE, fruit = eat_fruit(score, SNAKE, fruit)
 
 
 
