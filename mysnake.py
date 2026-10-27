@@ -5,6 +5,31 @@ pg.init()
 screen = pg.display.set_mode((600, 600))
 clock = pg.time.Clock()
 
+def draw_bord(screen):
+    x=0
+    y=0
+    noir=(0,0,0)
+    screen.fill(noir)
+    width, height = 20,20
+    color=(255,255,255)
+    i=0
+    while i<=30:
+        if i%2==0:
+            for l in range(30):
+                for m in range(30):
+                    rect=pg.Rect(40*l,40*m,width,height)
+                    pg.draw.rect(screen,color,rect)
+            x+=40
+        if i%2==1: 
+            for l in range(30):
+                for m in range(30):
+                    rect=pg.Rect(40*l+20,40*m+20,width,height)
+                    pg.draw.rect(screen,color,rect)
+            x+=40 
+        i+=1
+    pg.display.update()
+    return 
+
 while True:
     clock.tick(1)
 
@@ -12,17 +37,15 @@ while True:
         if event.type == pg.QUIT or event.type == pg.KEYDOWN and event.key == pg.K_q: #pour quitter le jeu en appuyant sur la croix ou sur q
             pg.quit()
 
-    random_color = (0, 0, 0)
-    screen.fill(random_color)
-    x, y = 100, 200            # coin supérieur gauche, en pixels
-    width, height = 20, 20     # largeur et hauteur, en pixels
-    color = (255, 0, 0)        # rouge, en (R, V, B)
+    # random_color = (0, 0, 0)
+    # screen.fill(random_color)
+    # x, y = 100, 200            # coin supérieur gauche, en pixels
+    # width, height = 20, 20     # largeur et hauteur, en pixels
+    # color = (255, 0, 0)        # rouge, en (R, V, B)
 
-    rect = pg.Rect(x, y, width, height)
-    pg.draw.rect(screen, color, rect)
-    
-    pg.display.update()
+    # rect = pg.Rect(x, y, width, height)
+    # pg.draw.rect(screen, color, rect)
+    draw_bord(screen)
 
-def draw_bord():
-    
+
 
