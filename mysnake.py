@@ -43,9 +43,16 @@ def draw_snake(snake):
         pg.display.update()
     return
 
+def move_snake(snake,direction):
+    snake.append((snake[-1][0] + direction[0], snake[-1][1] + direction[1]))
+    snake.pop(0)
+    return snake
+
+direction=(1,0)
+
 while True:
     clock.tick(1)
-
+    
     for event in pg.event.get():
         if event.type == pg.QUIT or event.type == pg.KEYDOWN and event.key == pg.K_q: #pour quitter le jeu en appuyant sur la croix ou sur q
             pg.quit()
@@ -60,6 +67,7 @@ while True:
     # pg.draw.rect(screen, color, rect)
     draw_bord(screen)
     draw_snake(SNAKE)
+    move_snake(SNAKE, direction)
 
 
 
